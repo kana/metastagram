@@ -3,7 +3,20 @@
 %html(xmlns='http://www.w3.org/1999/xhtml' xml:lang='en')
   %head
     %title= Metastagram::ApplicationName
+    -# TODO: Add a neat stylesheet.
   %body
-    Hello Sinatra, Rack, Heroku and Haml!
+    #title
+      -# TODO: Replace ``[Meta]'' with a form to input search query.
+      %h1 [Meta]stagram
+    #images
+      -# TODO: Show images dynamically.
+      [Image] [Image] [Image] [Image] [Image] ...
+    #footer
+      %address
+        Copyright &copy; 2011
+        %a(href='http://whileimautomaton.net/') Kana Natsuno
+        \/
+        %a(href='https://github.com/kana/metastagram') Source code
+        is freely available at GitHub.
 
 -# __END__
