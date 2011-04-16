@@ -3,8 +3,10 @@ require 'sinatra'
 
 
 
-get '/' do
-  'Hello, Sinatra!'
+class Metastagram < Sinatra::Application
+  get '/' do
+    'Hello, Sinatra!'
+  end
 end
 
 

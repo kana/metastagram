@@ -1,0 +1,2 @@
+require './metastagram'
+run Metastagram
