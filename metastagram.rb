@@ -1,3 +1,4 @@
+require 'haml'
 require 'sinatra'
 
 
@@ -7,7 +8,7 @@ class Metastagram < Sinatra::Application
   ApplicationName = 'Metastagram'
 
   get '/' do
-    'Hello, Sinatra!'
+    haml :index
   end
 end
 
