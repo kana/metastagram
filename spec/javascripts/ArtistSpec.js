@@ -1,7 +1,7 @@
 describe('Artist', function () {
-  describe('create', function () {
+  describe('(constructor)', function () {
     it('should return a new artist', function () {
-      var a = Metastagram.Artist.create();
+      var a = new Metastagram.Artist();
       expect(typeof a.start).toBe('function');
     });
     it('should return a new artist with given options', function () {
@@ -10,7 +10,7 @@ describe('Artist', function () {
         normalBoxes: $([]),
         updateInterval: 1234
       };
-      var a = Metastagram.Artist.create(options);
+      var a = new Metastagram.Artist(options);
       for (var key in options) {
         expect(a.options[key]).toBe(options[key]);
       }
