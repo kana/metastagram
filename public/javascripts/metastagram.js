@@ -3,12 +3,15 @@ var Metastagram = (function ($) {
   return $.extend(M, {
     Artist: function (newOptions) {
       var defaultOptions = {
+        explorationInterval: 5 * 60 * 1000,
         hotBoxes: $([]),
         normalBoxes: $([]),
         updateInterval: 3000
       };
 
       $.extend(this, {
+        explorationTimer: null,
+        librarian: new M.Librarian(),
         options: $.extend({}, defaultOptions, newOptions),
         perform: function () {
           // TODO: Refresh boxes in nice order.
@@ -22,8 +25,14 @@ var Metastagram = (function ($) {
           box.text(M.Maid.random(0, 10));
         },
         start: function () {
+          var _this = this;
+          if (!this.explorationTimer) {
+            this.explorationTimer = setInterval(
+              function () {_this.librarian.explorePhotos();},
+              this.options.explorationInterval
+            );
+          }
           if (!this.updateTimer) {
-            var _this = this;
             this.updateTimer = setInterval(
               function () {_this.perform();},
               this.options.updateInterval
