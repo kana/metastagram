@@ -35,7 +35,28 @@ var Metastagram = (function ($) {
     },
     Explorer: {
     },
-    Librarian: {
+    Librarian: function (newOptions) {
+      var defaultOptions = {
+      };
+
+      $.extend(this, {
+        explorePhotos: function (query) {
+          // TODO: Use Explorer.
+          var newPhotoId = ++(this.lastPhotoId);
+          this.photoArchive[newPhotoId] = {
+            id: newPhotoId,
+            title: newPhotoId + '-' + M.Maid.random(0, 10)
+          };
+        },
+        lastPhotoId: null,
+        options: $.extend({}, defaultOptions, newOptions),
+        photoArchive: null,
+        resetPhotoArchive: function () {
+          this.lastPhotoId = 0;
+          this.photoArchive = {/* 'id': {photoMetadata} */};
+        }
+      });
+      this.resetPhotoArchive();
     },
     Maid: {
       choose: function (array) {
