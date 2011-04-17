@@ -1,4 +1,5 @@
-var Metastagram = (function (M, $) {
+var Metastagram = (function ($) {
+  var M = {};
   return $.extend(M, {
     Artist: {
       create: function (newOptions) {
@@ -43,6 +44,6 @@ var Metastagram = (function (M, $) {
       }
     }
   });
-})({}, jQuery);
+})(jQuery);
 
 // vim: expandtab softtabstop=2 shiftwidth=2
