@@ -8,7 +8,11 @@
     %script(type='text/javascript' src='/code/metastagram.js')
     :javascript
       $(document).ready(function () {
-        // TODO: Boot up the front-end application.
+        Metastagram.Artist.create({
+          hotBoxes: $('.hot.box'),
+          normalBoxes: $('.box:not(.hot)'),
+          updateInterval: 1000
+        }).start();
       });
   %body
     #header
