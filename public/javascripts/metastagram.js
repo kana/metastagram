@@ -22,15 +22,15 @@ var Metastagram = (function ($) {
           box.text(M.Maid.random(0, 10));
         },
         start: function () {
-          if (!this.timer) {
+          if (!this.updateTimer) {
             var _this = this;
-            this.timer = setInterval(
+            this.updateTimer = setInterval(
               function () {_this.perform();},
               this.options.updateInterval
             );
           }
         },
-        timer: null
+        updateTimer: null
       });
     },
     Explorer: {
