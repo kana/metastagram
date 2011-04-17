@@ -37,6 +37,13 @@ describe('Librarian', function () {
         oldCount = newCount;
       }
     });
+    it('should call a given continuation', function () {
+      var l = new Metastagram.Librarian();
+      var spy = jasmine.createSpy();
+
+      l.explorePhotos(null, spy);
+      expect(spy).toHaveBeenCalled();
+    });
   });
   describe('resetPhotoArchive', function () {
     it('should clear photoArchive', function () {

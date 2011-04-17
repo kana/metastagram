@@ -52,13 +52,16 @@ var Metastagram = (function ($) {
       };
 
       $.extend(this, {
-        explorePhotos: function (query) {
+        explorePhotos: function (query, continuation) {
           // TODO: Use Explorer.
           var newPhotoId = ++(this.lastPhotoId);
           this.photoArchive[newPhotoId] = {
             id: newPhotoId,
             title: newPhotoId + '-' + M.Maid.random(0, 10)
           };
+
+          if (continuation)
+            continuation();
         },
         lastPhotoId: null,
         options: $.extend({}, defaultOptions, newOptions),
