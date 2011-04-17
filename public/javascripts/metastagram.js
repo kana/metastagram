@@ -28,7 +28,10 @@ var Metastagram = (function ($) {
           var _this = this;
           if (!this.explorationTimer) {
             this.explorationTimer = setInterval(
-              function () {_this.librarian.explorePhotos();},
+              function () {
+                var dummyQuery = 'meta';  // TODO: Use given query.
+                _this.librarian.explorePhotos(dummyQuery);
+              },
               this.options.explorationInterval
             );
           }
