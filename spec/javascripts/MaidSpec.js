@@ -1,4 +1,19 @@
 describe('Maid', function () {
+  describe('choose', function () {
+    var x0 = 123;
+    var x1 = 'abc';
+    var x2 = ['array'];
+    var x3 = {'object': x2};
+    var xs = [x0, x1, x2, x3];
+    var trialCount = 10;
+    it('should randomly return an element as array', function () {
+      for (var i = 0; i < trialCount; i++) {
+        var x = Metastagram.Maid.choose(xs);
+        expect(x.length).toBe(1);
+        expect(xs).toContain(x[0]);
+      }
+    });
+  });
   describe('random', function () {
     var trialCount = 2011;
     var minimum = 4;
