@@ -65,6 +65,24 @@ var Metastagram = (function ($) {
           if (continuation)
             continuation();
         },
+        initializePhotoArchive: function (query, requiredCount, continuation) {
+          var _this = this;
+          this.explorePhotos(
+            query,
+            function () {
+              if (requiredCount <= Object.keys(_this.photoArchive).length) {
+                if (continuation)
+                  continuation();
+              } else {
+                _this.initializePhotoArchive(
+                  query,
+                  requiredCount,
+                  continuation
+                );
+              }
+            }
+          );
+        },
         lastPhotoId: null,
         options: $.extend({}, defaultOptions, newOptions),
         photoArchive: null,

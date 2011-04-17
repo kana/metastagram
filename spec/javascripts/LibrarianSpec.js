@@ -45,6 +45,24 @@ describe('Librarian', function () {
       expect(spy).toHaveBeenCalled();
     });
   });
+  describe('initializePhotoArchive', function () {
+    it('should fill photos as many as specified', function () {
+      var l = new Metastagram.Librarian();
+
+      expect(Object.keys(l.photoArchive).length).toBe(0);
+
+      var count = 10;
+      l.initializePhotoArchive(null, count);
+      expect(Object.keys(l.photoArchive).length).not.toBeLessThan(count);
+    });
+    it('should call a given continuation', function () {
+      var l = new Metastagram.Librarian();
+      var spy = jasmine.createSpy();
+
+      l.initializePhotoArchive(null, 10, spy);
+      expect(spy).toHaveBeenCalled();
+    });
+  });
   describe('resetPhotoArchive', function () {
     it('should clear photoArchive', function () {
       var l = new Metastagram.Librarian();
