@@ -79,14 +79,14 @@ var Metastagram = (function ($) {
           var a = M.Maid.random(0, 10);
           var i = M.Maid.random(0, 10);
           var t = M.Maid.random(0, 10);
-          this.photoArchive[photoPageUri] = {
+          this.archivePhoto({
             authorName: 'Author' + a,
             authorUri: '/authors/' + a,
             largeThumbnailUri: '/thumbnails/large' + i,
             pageUri: photoPageUri,
             smallThumbnailUri: '/thumbnails/small' + i,
             title: 'Title' + t
-          };
+          });
 
           if (continuation)
             continuation();
