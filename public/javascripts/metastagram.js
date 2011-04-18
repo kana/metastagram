@@ -20,9 +20,11 @@ var Metastagram = (function ($) {
         },
         refresh: function (boxes) {
           // TODO: Add nice effect to refresh a box.
-          // TODO: Use images from Librarian.
+          // TODO: Do not show the same photo in two or more boxes.
+          var a = this.librarian.photoArchive;
+          var photo = a[M.Maid.choose(Object.keys(a))];
           var box = M.Maid.choose(boxes);
-          box.text(M.Maid.random(0, 10));
+          box.text(photo.title);  // TODO: Show photo properly.
         },
         start: function () {
           var _this = this;
