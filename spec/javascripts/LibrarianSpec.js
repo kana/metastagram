@@ -44,6 +44,25 @@ describe('Librarian', function () {
       l.explorePhotos(null, spy);
       expect(spy).toHaveBeenCalled();
     });
+    it('should archive photos in Metastagram own format', function () {
+      var l = new Metastagram.Librarian();
+
+      l.explorePhotos();
+      var photoPageUris = Object.keys(l.photoArchive);
+      expect(photoPageUris.length).toBeGreaterThan(0);
+
+      var photo = l.photoArchive[photoPageUris[0]];
+      var keys = [
+        'authorName',
+        'authorUri',
+        'largeThumbnailUri',
+        'pageUri',
+        'smallThumbnailUri',
+        'title'
+      ];
+      for (var i in keys)
+        expect(photo[keys[i]]).not.toBeNull();
+    });
   });
   describe('initializePhotoArchive', function () {
     it('should fill photos as many as specified', function () {

@@ -70,11 +70,19 @@ var Metastagram = (function ($) {
 
       $.extend(this, {
         explorePhotos: function (query, continuation) {
-          // TODO: Use Explorer.
+          // TODO: Use Explorer.  The following is a dummy for test.
           var newPhotoId = ++(this.lastPhotoId);
-          this.photoArchive[newPhotoId] = {
-            id: newPhotoId,
-            title: newPhotoId + '-' + M.Maid.random(0, 10)
+          var photoPageUri = newPhotoId;
+          var a = M.Maid.random(0, 10);
+          var i = M.Maid.random(0, 10);
+          var t = M.Maid.random(0, 10);
+          this.photoArchive[photoPageUri] = {
+            authorName: 'Author' + a,
+            authorUri: '/authors/' + a,
+            largeThumbnailUri: '/thumbnails/large' + i,
+            pageUri: photoPageUri,
+            smallThumbnailUri: '/thumbnails/small' + i,
+            title: 'Title' + t
           };
 
           if (continuation)
