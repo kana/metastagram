@@ -33,6 +33,14 @@ var Metastagram = (function ($) {
             dummyQuery,
             this.options.hotBoxes.length + this.options.normalBoxes.length,
             function () {
+              var fillWithPhotos = function (boxes) {
+                boxes.each(function () {
+                  _this.refresh($(this));
+                });
+              };
+              fillWithPhotos(_this.options.hotBoxes);
+              fillWithPhotos(_this.options.normalBoxes);
+
               if (!_this.explorationTimer) {
                 _this.explorationTimer = setInterval(
                   function () {
