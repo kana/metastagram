@@ -28,21 +28,28 @@ var Metastagram = (function ($) {
         },
         start: function () {
           var _this = this;
-          if (!this.explorationTimer) {
-            this.explorationTimer = setInterval(
-              function () {
-                var dummyQuery = 'meta';  // TODO: Use given query.
-                _this.librarian.explorePhotos(dummyQuery);
-              },
-              this.options.explorationInterval
-            );
-          }
-          if (!this.updateTimer) {
-            this.updateTimer = setInterval(
-              function () {_this.perform();},
-              this.options.updateInterval
-            );
-          }
+          var dummyQuery = 'meta';  // TODO: Use given query.
+          this.librarian.initializePhotoArchive(
+            dummyQuery,
+            this.options.hotBoxes.length + this.options.normalBoxes.length,
+            function () {
+              if (!_this.explorationTimer) {
+                _this.explorationTimer = setInterval(
+                  function () {
+                    var dummyQuery = 'meta';  // TODO: Use given query.
+                    _this.librarian.explorePhotos(dummyQuery);
+                  },
+                  _this.options.explorationInterval
+                );
+              }
+              if (!_this.updateTimer) {
+                _this.updateTimer = setInterval(
+                  function () {_this.perform();},
+                  _this.options.updateInterval
+                );
+              }
+            }
+          );
         },
         updateTimer: null
       });
