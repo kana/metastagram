@@ -101,24 +101,9 @@ var Metastagram = (function ($) {
           this.photoArchive[photo.pageUri] = photo;
         },
         explorePhotos: function (query, continuation) {
-          // TODO: Use Explorer.  The following is a dummy for test.
-          var newPhotoId = ++(this.lastPhotoId);
-          var photoPageUri = newPhotoId;
-          var a = M.Maid.random(0, 10);
-          var i = M.Maid.random(0, 10);
-          var t = M.Maid.random(0, 10);
-          this.archivePhoto({
-            authorName: 'Author' + a,
-            authorUri: '/authors/' + a,
-            largeThumbnailUri: '/thumbnails/large' + i,
-            pageUri: photoPageUri,
-            smallThumbnailUri: '/thumbnails/small' + i,
-            title: 'Title' + t
-          });
-
-          if (continuation)
-            continuation();
+          this.explorer.explorePhotos(query, this, continuation);
         },
+        explorer: new M.Explorer(),
         initializePhotoArchive: function (query, requiredCount, continuation) {
           var _this = this;
           this.explorePhotos(
@@ -137,11 +122,9 @@ var Metastagram = (function ($) {
             }
           );
         },
-        lastPhotoId: null,
         options: $.extend({}, defaultOptions, newOptions),
         photoArchive: null,
         resetPhotoArchive: function () {
-          this.lastPhotoId = 0;
           this.photoArchive = {/* 'id': {photoMetadata} */};
         }
       });
