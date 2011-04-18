@@ -62,7 +62,35 @@ var Metastagram = (function ($) {
         updateTimer: null
       });
     },
-    Explorer: {
+    Explorer: function (newOptions) {
+      var defaultOptions = {
+      };
+
+      $.extend(this, {
+        explorePhotos: function (query, librarian, continuation) {
+          // TODO: Use Flickr, instagr.am and/or other services.
+          // TODO: Use given query.
+
+          var newPhotoId = ++(this.lastPhotoId);
+          var photoPageUri = newPhotoId;
+          var a = M.Maid.random(0, 10);
+          var i = M.Maid.random(0, 10);
+          var t = M.Maid.random(0, 10);
+          librarian.archivePhoto({
+            authorName: 'Author' + a,
+            authorUri: '/authors/' + a,
+            largeThumbnailUri: '/thumbnails/large' + i,
+            pageUri: photoPageUri,
+            smallThumbnailUri: '/thumbnails/small' + i,
+            title: 'Title' + t
+          });
+
+          if (continuation)
+            continuation();
+        },
+        lastPhotoId: 0,
+        options: $.extend({}, defaultOptions, newOptions)
+      });
     },
     Librarian: function (newOptions) {
       var defaultOptions = {
