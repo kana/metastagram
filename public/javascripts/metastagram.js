@@ -69,6 +69,9 @@ var Metastagram = (function ($) {
       };
 
       $.extend(this, {
+        archivePhoto: function (photo) {
+          this.photoArchive[photo.pageUri] = photo;
+        },
         explorePhotos: function (query, continuation) {
           // TODO: Use Explorer.  The following is a dummy for test.
           var newPhotoId = ++(this.lastPhotoId);

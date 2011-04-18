@@ -14,6 +14,25 @@ describe('Librarian', function () {
       }
     });
   });
+  describe('archivePhoto', function () {
+    it('should archive a given photo', function () {
+      var l = new Metastagram.Librarian();
+
+      expect(Object.keys(l.photoArchive).length).toBe(0);
+
+      var photo = {
+        authorName: 'authorName',
+        authorUri: 'authorUri',
+        largeThumbnailUri: 'largeThumbnailUri',
+        pageUri: 'pageUri',
+        smallThumbnailUri: 'smallThumbnailUri',
+        title: 'title'
+      };
+      l.archivePhoto(photo);
+      expect(Object.keys(l.photoArchive).length).toEqual(1);
+      expect(l.photoArchive[photo.pageUri]).toBe(photo);
+    });
+  });
   describe('explorePhotos', function () {
     it('should archive found photos', function () {
       var l = new Metastagram.Librarian();
