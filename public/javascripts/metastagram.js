@@ -135,6 +135,11 @@ var Metastagram = (function ($) {
         var n = M.Maid.random(0, array.length);
         return array.slice(n, n + 1);
       },
+      format: function (format, values) {
+        return format.replace(/{(\w+)}/g, function (_, key) {
+          return values[key];
+        });
+      },
       random: function (minimum, maximum) {
         return Math.floor(Math.random() * (maximum - minimum)) + minimum;
       }

@@ -14,6 +14,14 @@ describe('Maid', function () {
       }
     });
   });
+  describe('format', function () {
+    it('should format with given values', function () {
+      expect(Metastagram.Maid.format(
+        '{foo}.{bar}.{baz}',
+        {foo: 'a', bar: 'b', baz: 'c'}
+      )).toEqual('a.b.c');
+    });
+  });
   describe('random', function () {
     var trialCount = 2011;
     var minimum = 4;
