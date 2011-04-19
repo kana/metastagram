@@ -69,27 +69,22 @@ var Metastagram = (function ($) {
 
       $.extend(this, {
         explorePhotos: function (query, librarian, continuation) {
-          // TODO: Use Flickr, instagr.am and/or other services.
-          // TODO: Use given query.
-
-          var newPhotoId = ++(this.lastPhotoId);
-          var photoPageUri = newPhotoId;
-          var a = M.Maid.random(0, 10);
-          var i = M.Maid.random(0, 10);
-          var t = M.Maid.random(0, 10);
-          librarian.archivePhoto({
-            authorName: 'Author' + a,
-            authorUri: '/authors/' + a,
-            largeThumbnailUri: '/thumbnails/large' + i,
-            pageUri: photoPageUri,
-            smallThumbnailUri: '/thumbnails/small' + i,
-            title: 'Title' + t
+          // TODO: How about other photo sharing service such as instagr.am?
+          this.explorePhotosInFlickr(query, function (foundPhotos) {
+            $.each(foundPhotos, function (_, photo) {
+              librarian.archivePhoto({
+                authorName: photo.owner,  // TODO: Fix.
+                authorUri: M.Maid.getFlickrUri(photo, 'author'),
+                largeThumbnailUri: M.Maid.getFlickrUri(photo, 'large'),
+                pageUri: M.Maid.getFlickrUri(photo, 'photo'),
+                smallThumbnailUri: M.Maid.getFlickrUri(photo, 'small'),
+                title: photo.title
+              });
+            });
+            if (continuation)
+              continuation();
           });
-
-          if (continuation)
-            continuation();
         },
-        lastPhotoId: 0,
         explorePhotosInFlickr: function (query, continuation) {
           // TODO: Think over request failure.
           $.getJSON(
