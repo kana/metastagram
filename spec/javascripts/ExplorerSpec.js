@@ -68,6 +68,21 @@ describe('Explorer', function () {
         expect(photo[keys[i]]).not.toBeNull();
     });
   });
+  describe('explorePhotosInFlickr', function () {
+    it('should find photos from Flickr', function () {
+      var e = new Metastagram.Explorer();
+      var spy = jasmine.createSpy();
+
+      var dummyQuery = 'all your base are belong to mugs';
+      e.explorePhotosInFlickr(dummyQuery, spy);
+      expect(spy).toHaveBeenCalledWith(
+        fakeajax.successResponseFromFlickr.photos.photo
+      );
+    });
+    xit('should work fine even if request is failed', function () {
+      // TODO: Implement.
+    });
+  });
 });
 
 

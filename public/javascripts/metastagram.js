@@ -64,6 +64,7 @@ var Metastagram = (function ($) {
     },
     Explorer: function (newOptions) {
       var defaultOptions = {
+        flickrApiKey: '203e3a11d79c8092eb14386f79b0a69a'
       };
 
       $.extend(this, {
@@ -89,6 +90,22 @@ var Metastagram = (function ($) {
             continuation();
         },
         lastPhotoId: 0,
+        explorePhotosInFlickr: function (query, continuation) {
+          // TODO: Think over request failure.
+          $.getJSON(
+            'http://api.flickr.com/services/rest/?jsoncallback=?',
+            {
+              api_key: this.options.flickrApiKey,
+              format: 'json',
+              method: 'flickr.photos.search',
+              text: query
+            },
+            function (data) {
+              var foundPhotos = data.photos.photo;
+              continuation(foundPhotos);
+            }
+          );
+        },
         options: $.extend({}, defaultOptions, newOptions)
       });
     },
