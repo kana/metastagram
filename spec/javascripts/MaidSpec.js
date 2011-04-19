@@ -22,6 +22,35 @@ describe('Maid', function () {
       )).toEqual('a.b.c');
     });
   });
+  describe('getFlickrUri', function () {
+    var g = Metastagram.Maid.getFlickrUri;
+    var photo = {
+      id: '5621993782',
+      owner: '12516383@N07',
+      secret: 'f0c027a687',
+      server: '5190',
+      farm: 6,
+      title: 'All your base are belong to mugs - 10',
+      ispublic: 1,
+      isfriend: 0,
+      isfamily: 0
+    };
+    it('should create author page uri', function () {
+      expect(g(photo, 'author')).toEqual('http://www.flickr.com/photos/12516383@N07/');
+    });
+    it('should create large image uri', function () {
+      expect(g(photo, 'large')).toEqual('http://farm6.static.flickr.com/5190/5621993782_f0c027a687_t.jpg');
+    });
+    it('should create photo page uri', function () {
+      expect(g(photo, 'photo')).toEqual('http://www.flickr.com/photos/12516383@N07/5621993782/');
+    });
+    it('should create small image uri', function () {
+      expect(g(photo, 'small')).toEqual('http://farm6.static.flickr.com/5190/5621993782_f0c027a687_s.jpg');
+    });
+    it('should throw error for unknown type', function () {
+      expect(function () {g(photo, 'unknown');}).toThrow();
+    });
+  });
   describe('random', function () {
     var trialCount = 2011;
     var minimum = 4;

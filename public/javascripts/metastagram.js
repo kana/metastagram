@@ -140,6 +140,31 @@ var Metastagram = (function ($) {
           return values[key];
         });
       },
+      getFlickrUri: function (photo, type) {
+        if (type == 'author') {
+          return M.Maid.format(
+            'http://www.flickr.com/photos/{owner}/',
+            photo
+          );
+        } else if (type == 'large') {
+          return M.Maid.format(
+            'http://farm{farm}.static.flickr.com/{server}/{id}_{secret}_t.jpg',
+            photo
+          );
+        } else if (type == 'photo') {
+          return M.Maid.format(
+            'http://www.flickr.com/photos/{owner}/{id}/',
+            photo
+          );
+        } else if (type == 'small') {
+          return M.Maid.format(
+            'http://farm{farm}.static.flickr.com/{server}/{id}_{secret}_s.jpg',
+            photo
+          );
+        } else {
+          throw M.Maid.format('Unknown type "{type}"', {'type': type});
+        }
+      },
       random: function (minimum, maximum) {
         return Math.floor(Math.random() * (maximum - minimum)) + minimum;
       }
