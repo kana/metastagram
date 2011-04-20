@@ -44,7 +44,6 @@ var Metastagram = (function ($) {
               if (!_this.explorationTimer) {
                 _this.explorationTimer = setInterval(
                   function () {
-                    var dummyQuery = 'meta';  // TODO: Use given query.
                     _this.librarian.explorePhotos(dummyQuery);
                   },
                   _this.options.explorationInterval
