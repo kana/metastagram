@@ -10,6 +10,10 @@ class Metastagram < Sinatra::Application
   get '/' do
     haml :index
   end
+
+  get '/stylesheet.css' do
+    sass :stylesheet
+  end
 end
 
 
