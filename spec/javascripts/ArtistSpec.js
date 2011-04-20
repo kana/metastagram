@@ -6,8 +6,7 @@ describe('Artist', function () {
     });
     it('should return a new artist with given options', function () {
       var options = {
-        hotBoxes: $([]),
-        normalBoxes: $([]),
+        boxes: $([]),
         updateInterval: 1234
       };
       var a = new Metastagram.Artist(options);

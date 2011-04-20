@@ -9,8 +9,7 @@
     :javascript
       $(document).ready(function () {
         new Metastagram.Artist({
-          hotBoxes: $('.hot.box'),
-          normalBoxes: $('.box:not(.hot)'),
+          boxes: $('.box'),
           updateInterval: 1000
         }).start();
       });
@@ -42,9 +41,9 @@
           %td.box 18
         %tr
           %td.box 21
-          %td.hot.box(rowspan='2' colspan='2') 22 23 32 33
-          %td.hot.box(rowspan='2' colspan='2') 24 25 34 35
-          %td.hot.box(rowspan='2' colspan='2') 26 27 36 37
+          %td.box(rowspan='2' colspan='2') 22 23 32 33
+          %td.box(rowspan='2' colspan='2') 24 25 34 35
+          %td.box(rowspan='2' colspan='2') 26 27 36 37
           %td.box 28
         %tr
           %td.box 31

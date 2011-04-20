@@ -3,9 +3,8 @@ var Metastagram = (function ($) {
   return $.extend(M, {
     Artist: function (newOptions) {
       var defaultOptions = {
+        boxes: $([]),
         explorationInterval: 5 * 60 * 1000,
-        hotBoxes: $([]),
-        normalBoxes: $([]),
         updateInterval: 3000
       };
 
@@ -15,8 +14,7 @@ var Metastagram = (function ($) {
         options: $.extend({}, defaultOptions, newOptions),
         perform: function () {
           // TODO: Refresh boxes in nice order.
-          this.refresh(this.options.normalBoxes);
-          this.refresh(this.options.hotBoxes);
+          this.refresh(this.options.boxes);
         },
         refresh: function (boxes) {
           // TODO: Add nice effect to refresh a box.
@@ -31,15 +29,14 @@ var Metastagram = (function ($) {
           var dummyQuery = 'meta';  // TODO: Use given query.
           this.librarian.initializePhotoArchive(
             dummyQuery,
-            this.options.hotBoxes.length + this.options.normalBoxes.length,
+            this.options.boxes.length,
             function () {
               var fillWithPhotos = function (boxes) {
                 boxes.each(function () {
                   _this.refresh($(this));
                 });
               };
-              fillWithPhotos(_this.options.hotBoxes);
-              fillWithPhotos(_this.options.normalBoxes);
+              fillWithPhotos(_this.options.boxes);
 
               if (!_this.explorationTimer) {
                 _this.explorationTimer = setInterval(
