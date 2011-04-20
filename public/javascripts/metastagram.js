@@ -22,7 +22,13 @@ var Metastagram = (function ($) {
           var a = this.librarian.photoArchive;
           var photo = a[M.Maid.choose(Object.keys(a))];
           var box = M.Maid.choose(boxes);
-          box.text(photo.title);  // TODO: Show photo properly.
+          box.html(M.Maid.format(
+            '<a href="{pageUri}"><img alt="{title}" src="{imageUri}"/></a>',
+            $.extend(
+              {imageUri: photo.largeThumbnailUri},
+              photo
+            )
+          ));
         },
         start: function () {
           var _this = this;
